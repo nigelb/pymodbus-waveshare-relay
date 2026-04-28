@@ -22,11 +22,7 @@ jobs:
         with:
           path: |
             ~/.cache/uv
-            .venv
           key: ${{ runner.os }}-uv-${{ hashFiles('uv.lock') }}
 
       - name: Run lint (optional)
-        run: |
-          pwd
-          ls
-          uvx ruff check . --select ALL --line-length 150
+        run: uvx ruff check . --select ALL --line-length 150
