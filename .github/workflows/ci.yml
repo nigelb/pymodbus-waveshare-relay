@@ -24,5 +24,5 @@ jobs:
 #            ~/.cache/uv
 #          key: ${{ runner.os }}-uv-${{ hashFiles('uv.lock') }}
 
-      - name: Run lint (optional)
+      - name: Ruff Check
         run: uvx ruff check . --select ALL --line-length 150
