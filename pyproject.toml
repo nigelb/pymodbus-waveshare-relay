@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pymodbus-waveshare-relay"
 version = "0.1.0"
-description = "Providers helpers to use the Waveshare RS485 Relay Interface with pyModBus."
+description = "Python pymodbus extensions for Waveshare Modbus RTU relay modules with support for vendor-specific commands"
 authors = [{ name = "NigelB" }]
 requires-python = ">=3.10"
 readme = "README.md"

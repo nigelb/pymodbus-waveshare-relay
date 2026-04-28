@@ -1,5 +1,5 @@
-# pymodbus-waveshare-relay Providers helpers to use the
-#   Waveshare RS485 Relay Interface with pyModBus.
+# Python pymodbus extensions for Waveshare Modbus RTU relay modules
+#   with support for vendor-specific commands
 #
 # Copyright 2026 NigelB
 #
