@@ -26,4 +26,4 @@ jobs:
           key: ${{ runner.os }}-uv-${{ hashFiles('uv.lock') }}
 
       - name: Run lint (optional)
-        run: uv run ruff check . check --select ALL --line-length 150
+        run: uv run ruff check . --select ALL --line-length 150
