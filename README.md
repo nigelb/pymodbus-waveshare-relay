@@ -5,7 +5,7 @@ Tested with:
 
 # Install
 ```bash
-pip install https://github/nigelb/pymodbus-waveshare-relay.git
+pip install https://github.com/nigelb/pymodbus-waveshare-relay.git
 ```
 
 # Example

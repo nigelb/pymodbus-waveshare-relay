@@ -34,6 +34,7 @@ codes uniquely define PDU structure, which is not the case for this device.
 import logging
 import struct
 
+from pymodbus.exceptions import ParameterException
 from pymodbus.pdu import DecodePDU, ModbusPDU
 
 logger = logging.getLogger("pymodbus.logging")
@@ -128,7 +129,7 @@ class WriteFlashOnSingleCoilResponse(ModbusPDU):
         """
         super().__init__(dev_id, transaction_id, address, count, bits, registers, status)
         self.flash_coil = flash_coil
-        self.on_value = int(float(on_ms) / 100)
+        self.on_value = on_ms // 10
 
     def encode(self) -> bytes:
         """Encode write coil request."""
@@ -138,7 +139,12 @@ class WriteFlashOnSingleCoilResponse(ModbusPDU):
     def decode(self, data: bytes) -> None:
         """Decode a write coil request."""
         sub, coil, value = struct.unpack(">BBH", data[:4])
-        self.sub_function_code = sub
+        if self.sub_function_code != sub:
+            msg = (
+                f"Unexpected sub_function_code value. "
+                f"Expected {self.sub_function_code}, received: {sub}"
+            )
+            raise ParameterException(msg)
         self.flash_coil = coil
         self.on_value = value * 10
 
@@ -216,10 +222,10 @@ class WaveshareDecoder(DecodePDU):
     Notes:
         - This is a workaround for a vendor-specific protocol that
           violates the standard Modbus assumption that function code
-          uniquely defines the PDU structure :contentReference[oaicite:0]{index=0}.
+          uniquely defines the PDU structure.
         - The input ``frame`` contains only the PDU portion of the
           message (function code + data), not the full RTU frame
-          (address and CRC are handled by the framer) :contentReference[oaicite:1]{index=1}.
+          (address and CRC are handled by the framer).
         - Unrecognised messages are delegated to the base DecodePDU
           implementation.
 
