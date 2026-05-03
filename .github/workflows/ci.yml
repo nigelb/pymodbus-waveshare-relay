@@ -23,8 +23,11 @@ jobs:
 
       - name: Run Tests
         run: |
-          pwd
-          ls
+          uv venv --python python3.10 venv
+          uv pip install --python venv pytest
+          uv pip install --python venv pymodbus-waveshare-relay/.
+          venv/bin/pytest pymodbus-waveshare-relay
+          
           
           
           
