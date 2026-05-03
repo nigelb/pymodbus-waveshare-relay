@@ -129,7 +129,7 @@ class WriteFlashOnSingleCoilResponse(ModbusPDU):
         """
         super().__init__(dev_id, transaction_id, address, count, bits, registers, status)
         self.flash_coil = flash_coil
-        self.on_value = on_ms // 10
+        self.on_value = on_ms // 100
 
     def encode(self) -> bytes:
         """Encode write coil request."""
@@ -146,7 +146,7 @@ class WriteFlashOnSingleCoilResponse(ModbusPDU):
             )
             raise ParameterException(msg)
         self.flash_coil = coil
-        self.on_value = value * 10
+        self.on_value = value * 100
 
     def __str__(self) -> str:
         """Build a representation of a Modbus response."""
