@@ -22,7 +22,7 @@ from pymodbus_waveshare_relay.pdu import WriteFlashOnSingleCoilResponse
 
 logger = logging.getLogger(__name__)
 
-def test_encoding_7():
+def test_encoding_station4_700ms() -> None:
     result = WriteFlashOnSingleCoilResponse(dev_id=1, flash_coil=0, on_ms=700).encode()
     assert result.hex() == "02000007"
 

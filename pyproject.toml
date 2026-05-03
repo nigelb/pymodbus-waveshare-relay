@@ -22,8 +22,18 @@ dependencies = [
 testpaths = ["tests"]
 
 [tool.black]
-line-length = 100
+line-length = 150
 
 [tool.mypy]
 python_version = "3.10"
 strict = true
+
+[tool.ruff]
+line-length = 150
+
+[tool.ruff.lint]
+select = ["ALL"]
+
+[tool.ruff.lint.per-file-ignores]
+"*_tests/*.py" = ["S101"]
+"tests/*.py" = ["S101"]
