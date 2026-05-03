@@ -18,12 +18,13 @@ jobs:
           version: "latest"
           cache-dependency-glob: "pyproject.toml"
 
-#      - name: Cache uv environment
-#        uses: actions/cache@v5
-#        with:
-#          path: |
-#            ~/.cache/uv
-#          key: ${{ runner.os }}-uv-${{ hashFiles('uv.lock') }}
-
       - name: Ruff Check
         run: uvx ruff check . --select ALL --line-length 150
+
+      - name: Run Tests
+        run: |
+          pwd
+          ls
+          
+          
+          
